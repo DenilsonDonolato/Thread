@@ -7,7 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5aff201-04fa-453a-a3a9-bb22221f1abb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Ex09.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Ex10.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,13 +69,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Ex09">
-    <configuration name="Ex04 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Ex04" />
-      <module name="Threads" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Ex05" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Ex05" />
       <module name="Threads" />
@@ -104,20 +97,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Ex10" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Ex10" />
+      <module name="Threads" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.Ex04 (1)" />
       <item itemvalue="Application.Ex05" />
       <item itemvalue="Application.Ex06" />
       <item itemvalue="Application.Ex07" />
       <item itemvalue="Application.Ex09" />
+      <item itemvalue="Application.Ex10" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Ex09" />
-        <item itemvalue="Application.Ex07" />
+        <item itemvalue="Application.Ex10" />
         <item itemvalue="Application.Ex06" />
+        <item itemvalue="Application.Ex07" />
         <item itemvalue="Application.Ex05" />
-        <item itemvalue="Application.Ex04 (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570894359268</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Ex09">
+      <created>1570902598785</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1570902598785</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,7 +210,8 @@
     <MESSAGE value="Ex06" />
     <MESSAGE value="Ex06 usando Lock no lugar de semáforo." />
     <MESSAGE value="Ex07 Comboios" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ex07 Comboios" />
+    <MESSAGE value="Ex09" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ex09" />
   </component>
   <component name="masterDetails">
     <states>
