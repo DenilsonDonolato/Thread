@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Ex06 implements Callable<Integer>
+public class Ex07 implements Callable<Integer>
 {
 	int[] array;
 	int[] contagem;
@@ -14,7 +14,7 @@ public class Ex06 implements Callable<Integer>
 	static ReentrantLock lock = new ReentrantLock();
 	
 	
-	Ex06(int[] array, int inicio, int fim, int[] contagem, int qtdValores)
+	Ex07(int[] array, int inicio, int fim, int[] contagem, int qtdValores)
 	{
 		this.array = array;
 		this.contagem = contagem;
@@ -46,7 +46,7 @@ public class Ex06 implements Callable<Integer>
 	public static void main(String[] args)
 	{
 		int[] array = new int[10000];
-		int qtdValores = 5000;
+		int qtdValores = 4;
 		for(int i = 0; i < array.length; i++) {
 			array[i] = i % qtdValores;
 		}
