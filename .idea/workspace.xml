@@ -7,9 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5aff201-04fa-453a-a3a9-bb22221f1abb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Ex07.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ex06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex06.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex07.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +68,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Ex06">
+  <component name="RunManager" selected="Application.Ex07">
     <configuration name="Ex03 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Ex03" />
       <module name="Threads" />
@@ -114,8 +113,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Ex06" />
         <item itemvalue="Application.Ex07" />
+        <item itemvalue="Application.Ex06" />
         <item itemvalue="Application.Ex05" />
         <item itemvalue="Application.Ex04 (1)" />
         <item itemvalue="Application.Ex03 (1)" />
@@ -168,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570872906978</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ex06 usando Lock no lugar de semáforo.">
+      <created>1570888757256</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1570888757256</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -188,7 +194,8 @@
     <MESSAGE value="Commit iniciaç" />
     <MESSAGE value="Commit inicial" />
     <MESSAGE value="Ex06" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ex06" />
+    <MESSAGE value="Ex06 usando Lock no lugar de semáforo." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ex06 usando Lock no lugar de semáforo." />
   </component>
   <component name="masterDetails">
     <states>

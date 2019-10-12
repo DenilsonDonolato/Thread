@@ -1,64 +1,137 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Ex07 implements Callable<Integer>
 {
-	int[] array;
-	int[] contagem;
-	int qtdValores, inicio, fim;
+	static String[] cidades = {"CidadeA", "CidadeB", "CidadeC", "CidadeD"};
 	
-	//static Semaphore semaphore = new Semaphore(1);
+	String cidadeOrigem;
+	String cidadeDestino;
+	String cidadeAtual;
+	String partida;
+	String chegada;
+	int numComboio;
+	
+	static Semaphore[] semaforos = new Semaphore[3];
 	static ReentrantLock lock = new ReentrantLock();
 	
 	
-	Ex07(int[] array, int inicio, int fim, int[] contagem, int qtdValores)
+	Ex07(String cidadeOrigem, String cidadeDestino, int numComboio)
 	{
-		this.array = array;
-		this.contagem = contagem;
-		this.qtdValores = qtdValores;
-		this.inicio = inicio;
-		this.fim = fim;
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		partida = "Partida da " + cidadeOrigem + " do comboio número " + numComboio + ": " + formatter.format(date);
+		this.cidadeOrigem = cidadeOrigem;
+		this.cidadeAtual = cidadeOrigem;
+		this.cidadeDestino = cidadeDestino;
+		this.numComboio = numComboio;
 	}
 	
 	@Override
 	public Integer call() throws Exception
 	{
-		for(int i = inicio; i < fim; i++) {
-			for(int j = 0; j < qtdValores; j++) {
-				if(array[i] == j) {
-					lock.lock();
-					try {
-						//semaphore.acquire();
-						contagem[j]++;
-						//semaphore.release();
-					} finally {
-						lock.unlock();
-					}
-				}
+		while(!cidadeAtual.equals(cidadeDestino)) {
+//			lock.lock();
+			comboioAnda(cidadeAtual, cidadeDestino);
+			lock.lock();
+			if(cidadeAtual.equals(cidadeDestino)) {
+				System.out.println("-------Comboio "+numComboio+"--------Chegou no destino--------");
+				Date date = new Date();
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+				chegada = "Chegada em " + cidadeDestino + " do comboio número " + numComboio + ": " + formatter.format(date);
+				System.out.println(partida);
+				System.out.println(chegada);
 			}
+			lock.unlock();
 		}
 		return 0;
 	}
 	
+	void comboioAnda(String cidadeAtual, String cidadeDestino) throws Exception
+	{
+		if(cidadeAtual.equals(cidades[0])) {
+			semaforos[0].acquire();
+			this.cidadeAtual = cidades[1];
+			lock.lock();
+			System.out.println("Comboio número: " + numComboio);
+			System.out.println("Rota: A - B");
+			System.out.println("Origem: " + cidadeOrigem + ", Atual: " + this.cidadeAtual + ", Destino: " + cidadeDestino);
+			lock.unlock();
+			semaforos[0].release();
+		} else if(cidadeAtual.equals(cidades[2])) {
+			semaforos[1].acquire();
+			this.cidadeAtual = cidades[1];
+			lock.lock();
+			System.out.println("Comboio número: " + numComboio);
+			System.out.println("Rota: C - B");
+			System.out.println("Origem: " + cidadeOrigem + ", Atual: " + this.cidadeAtual + ", Destino: " + cidadeDestino);
+			lock.unlock();
+			semaforos[1].release();
+		} else if(cidadeAtual.equals(cidades[3])) {
+			semaforos[2].acquire();
+			this.cidadeAtual = cidades[1];
+			lock.lock();
+			System.out.println("Comboio número: " + numComboio);
+			System.out.println("Rota: D - B");
+			System.out.println("Origem: " + cidadeOrigem + ", Atual: " + this.cidadeAtual + ", Destino: " + cidadeDestino);
+			lock.unlock();
+			semaforos[2].release();
+		} else {
+			if(cidadeDestino.equals(cidades[0])) {
+				semaforos[0].acquire();
+				this.cidadeAtual = cidades[0];
+				lock.lock();
+				System.out.println("Comboio número: " + numComboio);
+				System.out.println("Rota: B - A");
+				System.out.println("Origem: " + cidadeOrigem + ", Atual: " + this.cidadeAtual + ", Destino: " + cidadeDestino);
+				lock.unlock();
+				semaforos[0].release();
+			} else if(cidadeDestino.equals(cidades[2])) {
+				semaforos[1].acquire();
+				this.cidadeAtual = cidades[2];
+				lock.lock();
+				System.out.println("Comboio número: " + numComboio);
+				System.out.println("Rota: B - C");
+				System.out.println("Origem: " + cidadeOrigem + ", Atual: " + this.cidadeAtual + ", Destino: " + cidadeDestino);
+				lock.unlock();
+				semaforos[1].release();
+			} else {
+				semaforos[2].acquire();
+				this.cidadeAtual = cidades[3];
+				lock.lock();
+				System.out.println("Comboio número: " + numComboio);
+				System.out.println("Rota: B - D");
+				System.out.println("Origem: " + cidadeOrigem + ", Atual: " + this.cidadeAtual + ", Destino: " + cidadeDestino);
+				lock.unlock();
+				semaforos[2].release();
+			}
+		}
+	}
+	
 	public static void main(String[] args)
 	{
-		int[] array = new int[10000];
-		int qtdValores = 4;
-		for(int i = 0; i < array.length; i++) {
-			array[i] = i % qtdValores;
+		/*	Semaforo 0: Rota entre A - B
+			Semaforo 1: Rota entre B - C
+			Semaforo 2: Rota entre B - D
+		 */
+		for(int i = 0; i < semaforos.length; i++) {
+			semaforos[i] = new Semaphore(1);
 		}
-		int[] contagem = new int[qtdValores];
-		Arrays.fill(contagem, 0);
 		
-		ExecutorService executor = Executors.newFixedThreadPool(10);
+		ExecutorService executor = Executors.newFixedThreadPool(17);
 		List<Future<Integer>> list = new ArrayList<Future<Integer>>();
 		
-		Ex06[] ct = new Ex06[10];
+		Ex07[] ct = new Ex07[17];
 		for(int i = 0; i < ct.length; i++) {
-			ct[i] = new Ex06(array, i * 1000, i * 1000 + 1000, contagem, qtdValores);
+			if(i < 10) {
+				ct[i] = new Ex07(cidades[0], cidades[3], i + 1);
+			} else {
+				ct[i] = new Ex07(cidades[2], cidades[0], i + 1);
+			}
 		}
 		
 		for(int i = 0; i < ct.length; i++) {
@@ -85,9 +158,6 @@ public class Ex07 implements Callable<Integer>
 			} catch(InterruptedException | ExecutionException e) {
 				e.printStackTrace();
 			}
-		}
-		for(int i = 0; i < qtdValores; i++) {
-			System.out.println("Valor: " + i + ", encontrado " + contagem[i] + " vezes.");
 		}
 	}
 }
