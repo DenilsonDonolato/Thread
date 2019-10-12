@@ -8,7 +8,6 @@ public class Ex06 implements Callable<Integer>
 	int[] array;
 	int[] contagem;
 	int qtdValores, inicio, fim;
-//	static boolean[] mutex = new boolean[10];
 	
 	static Semaphore semaphore = new Semaphore(1);
 	
@@ -30,12 +29,8 @@ public class Ex06 implements Callable<Integer>
 				if(array[i] == j) {
 					try {
 						semaphore.acquire();
-						try {
-							contagem[j]++;
-						} finally {
-							semaphore.release();
-							break;
-						}
+						contagem[j]++;
+						semaphore.release();
 					} catch(InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -75,7 +70,6 @@ public class Ex06 implements Callable<Integer>
 		}
 		int res = 0;
 		boolean teste = false;
-		System.out.println("Total available Semaphore permits : " + semaphore.availablePermits());
 		while(true) {
 			try {
 				if(teste) {
