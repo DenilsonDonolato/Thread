@@ -11,11 +11,10 @@ public class Ex10 implements Callable<Integer>
 	int[] contagem;
 	int qtdValores, inicio, fim;
 	static Contador[] contadores = new Contador[23];
+	static Ex10[] ct = new Ex10[10];
 	
 	//	static boolean[] semaforos = new boolean[23];
 	static ReentrantLock lock = new ReentrantLock();
-	static Condition mostrar = lock.newCondition();
-	static Condition[] esperar = new Condition[23];
 	
 	
 	Ex10(int[] array, int inicio, int fim, int[] contagem, int qtdValores)
@@ -37,8 +36,10 @@ public class Ex10 implements Callable<Integer>
 					try {
 						contagem[j]++;
 						if(contagem[j] % 10 == 0) {
-							esperar[j].signal();
-							mostrar.await();
+							synchronized(contadores[j]) {
+								contadores[j].pausado = false;
+								contadores[j].wait();
+							}
 						}
 					} finally {
 						lock.unlock();
@@ -66,13 +67,12 @@ public class Ex10 implements Callable<Integer>
 		ExecutorService executor = Executors.newFixedThreadPool(33);
 		List<Future<Integer>> list = new ArrayList<Future<Integer>>();
 		
-		Ex10[] ct = new Ex10[10];
+		
 		for(int i = 0; i < ct.length; i++) {
 			ct[i] = new Ex10(array, i * 1000, i * 1000 + 1000, contagem, qtdValores);
 		}
 		for(int i = 0; i < contadores.length; i++) {
 			contadores[i] = new Contador(i + 1, contagem);
-			esperar[i] = lock.newCondition();
 		}
 		
 		for(int i = 0; i < ct.length; i++) {
@@ -121,16 +121,21 @@ public class Ex10 implements Callable<Integer>
 		{
 			this.busca = busca;
 			this.contagem = contagem;
+			pausado = true;
 		}
 		
 		@Override
 		public Integer call() throws Exception
 		{
-			while(true) {
-				esperar[busca].await();
-				System.out.println("Jogador: " + busca + ", Encontrado: " + contagem[busca - 1]);
-				mostrar.signal();
-				pausado = true;
+			synchronized(ct[busca - 1]) {
+				while(true) {
+					while(pausado){
+						wait();
+					}
+					System.out.println("Jogador: " + busca + ", Encontrado: " + contagem[busca - 1]);
+					ct[busca-1].notifyAll();
+					pausado = true;
+				}
 			}
 		}
 	}

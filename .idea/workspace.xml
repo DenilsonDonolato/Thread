@@ -7,8 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5aff201-04fa-453a-a3a9-bb22221f1abb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Ex10.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex10.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +68,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Ex09">
+  <component name="RunManager" selected="Application.Ex10">
     <configuration name="Ex05" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Ex05" />
       <module name="Threads" />
@@ -113,8 +113,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Ex09" />
         <item itemvalue="Application.Ex10" />
+        <item itemvalue="Application.Ex09" />
         <item itemvalue="Application.Ex06" />
         <item itemvalue="Application.Ex07" />
         <item itemvalue="Application.Ex05" />
@@ -188,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570902598785</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Tentativa Ex10">
+      <created>1570918395728</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1570918395728</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,7 +218,8 @@
     <MESSAGE value="Ex06 usando Lock no lugar de semáforo." />
     <MESSAGE value="Ex07 Comboios" />
     <MESSAGE value="Ex09" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ex09" />
+    <MESSAGE value="Tentativa Ex10" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tentativa Ex10" />
   </component>
   <component name="masterDetails">
     <states>
